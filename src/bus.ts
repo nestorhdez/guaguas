@@ -1,7 +1,7 @@
 import { Context } from "aws-lambda";
 import { Page, Browser } from "puppeteer";
 
-const chromium = require('chrome-aws-lambda');
+const chromium = require('../node_modules/chrome-aws-lambda');
 
 type LineData = {line: string, time: string};
 
