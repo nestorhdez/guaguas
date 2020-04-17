@@ -13,7 +13,9 @@ type LineData = {line: string, time: string};
 exports.handler = async (event: any, context: Context) => {
 
   const { busStop, line } = event.queryStringParameters;
-  
+  let browser: Browser | null = null;
+  let busStopResponse: LineData[];
+
   if(!busStop) {
     return {
       statusCode: 400,
@@ -21,18 +23,13 @@ exports.handler = async (event: any, context: Context) => {
     }
   }
 
-  let busStopResponse: LineData[];
-
-  const execPath = await executablePath;
-  
-  const browser: Browser = await puppeteer.launch({
-    args,
-    defaultViewport,
-    executablePath: execPath,
-    headless,
-  });
-
   try {
+    browser = await puppeteer.launch({
+      args,
+      defaultViewport,
+      executablePath: await executablePath,
+      headless,
+    });
 
     const page: Page = await browser.newPage();
     await page.goto('https:///www.guaguas.com/');
@@ -55,16 +52,16 @@ exports.handler = async (event: any, context: Context) => {
       : response;
 
   } catch(error) {
-    await browser.close();
-
     return {
       statusCode: 500,
       body: error
     };
+  } finally {
+    if (browser !== null) {
+      await browser.close();
+    }
   }
 
-  await browser.close();
-  
   return {
     statusCode: 200,
     body: busStopResponse
