@@ -1,7 +1,12 @@
 import { Context } from "aws-lambda";
 import { Page, Browser } from "puppeteer";
-
-const chromium = require('../node_modules/chrome-aws-lambda');
+import {
+  args,
+  defaultViewport,
+  executablePath,
+  headless,
+  puppeteer
+} from "chrome-aws-lambda";
 
 type LineData = {line: string, time: string};
 
@@ -18,11 +23,11 @@ exports.handler = async (event: any, context: Context) => {
 
   let busStopResponse: LineData[];
   
-  const browser: Browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+  const browser: Browser = await puppeteer.launch({
+    args: args,
+    defaultViewport: defaultViewport,
+    executablePath: await executablePath,
+    headless: headless,
   });
 
   try {
@@ -49,6 +54,7 @@ exports.handler = async (event: any, context: Context) => {
 
   } catch(error) {
     await browser.close();
+    
     return {
       statusCode: 500,
       body: error
