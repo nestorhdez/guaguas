@@ -15,20 +15,20 @@ exports.handler = async (event: any, context: Context) => {
       body: 'busStop query needed'
     }
   }
-  console.log({busStop, line});
 
   let busStopResponse: LineData[];
-
+  
   const browser: Browser = await chromium.puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
     headless: chromium.headless,
   });
-  const page: Page = await browser.newPage();
-  await page.goto('https:///www.guaguas.com/');
 
   try {
+
+    const page: Page = await browser.newPage();
+    await page.goto('https:///www.guaguas.com/');
     await page.click('#nav-tabs-wrapper > li.tab2 > a');
     await page.type('#laparada_menu', (busStop as string));
     await page.click('#consulta_parada_menu > div > button[type=submit]');
