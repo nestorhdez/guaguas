@@ -54,7 +54,9 @@ exports.handler = async (event: any, context: Context) => {
   } catch(error) {
     return {
       statusCode: 500,
-      body: error
+      body: JSON.stringify({
+        error
+      })
     };
   } finally {
     if (browser !== null) {
@@ -64,6 +66,8 @@ exports.handler = async (event: any, context: Context) => {
 
   return {
     statusCode: 200,
-    body: busStopResponse
+    body: JSON.stringify({
+      result: busStopResponse
+    })
   };
 };
