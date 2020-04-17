@@ -22,12 +22,14 @@ exports.handler = async (event: any, context: Context) => {
   }
 
   let busStopResponse: LineData[];
+
+  const execPath = await executablePath;
   
   const browser: Browser = await puppeteer.launch({
-    args: args,
-    defaultViewport: defaultViewport,
-    executablePath: await executablePath,
-    headless: headless,
+    args,
+    defaultViewport,
+    executablePath: execPath,
+    headless,
   });
 
   try {
@@ -54,7 +56,7 @@ exports.handler = async (event: any, context: Context) => {
 
   } catch(error) {
     await browser.close();
-    
+
     return {
       statusCode: 500,
       body: error
