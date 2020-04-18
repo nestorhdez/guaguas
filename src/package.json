@@ -1,21 +1,23 @@
 {
-  "name": "lambda-guaguas",
+  "name": "ts-guaguas",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc; npm run build:zipped",
-    "build:zipped": "cd lib/bus; npm i; cd ..; zip -r ../lambda/bus.zip bus",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "netlify-lambda": "^1.6.3"
+    "chrome-aws-lambda": "^2.1.1",
+    "netlify-lambda": "^1.6.3",
+    "puppeteer-core": "^3.0.0"
   },
   "devDependencies": {
-    "tslint": "^6.1.1",
-    "typescript": "^3.8.3"
+    "@types/aws-lambda": "^8.10.50",
+    "@types/node": "^13.11.1",
+    "@types/puppeteer": "^2.0.1",
+    "puppeteer": "^3.0.0"
   }
 }
