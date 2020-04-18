@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc; npm run build:zipped",
-    "build:zipped": "cd lib/bus; npm i; cd ..; zip -r ../lambda/bus.zip bus",
+    "build:zipped": "cd lib; npm i; cd ..; zip -r ./lambda/bus.zip lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
