@@ -4,17 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:src; npm run build:zipped",
+    "build": "npm run build:src; npm run build:lib; npm run build:zipped",
     "build:src": "cd src; npm i; cd ..; tsc",
-    "build:zipped": "cd lib; npm i; cd ..; zip -r ./lambda/lib.zip lib",
+    "build:lib": "cd lib; npm i; cd ..",
+    "build:zipped": "mkdir lambda; zip -r lambda/lib.zip lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "netlify-lambda": "^1.6.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "tslint": "^6.1.1",
     "typescript": "^3.8.3"
