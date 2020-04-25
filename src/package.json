@@ -10,14 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chrome-aws-lambda": "^2.1.1",
-    "netlify-lambda": "^1.6.3",
-    "puppeteer-core": "^3.0.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.50",
-    "@types/node": "^13.11.1",
-    "@types/puppeteer": "^2.0.1",
-    "puppeteer": "^3.0.0"
+    "@types/node": "^13.11.1"
   }
 }
