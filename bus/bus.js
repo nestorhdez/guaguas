@@ -1,18 +1,20 @@
+import axios from 'axios';
+
 exports.handler = async (event, context) => {
 
-  const { busStop, line } = event.queryStringParameters;
+  const { todo } = event.queryStringParameters;
 
-  if(!busStop) {
+  if(!todo) {
     return {
       statusCode: 400,
-      body: 'busStop query needed'
+      body: 'todo query needed'
     }
   }
 
-  line ? `Line: ${line}` : '';
+  const response = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todo}`);
 
   return {
     statusCode: 200,
-    body: `Bus stop: ${busStop}. ${line}`
+    body: JSON.stringify(response)
   };
 };
