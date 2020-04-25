@@ -1,6 +1,4 @@
-import { Context } from "aws-lambda";
-
-exports.handler = async (event: any, context: Context) => {
+exports.handler = async (event, context) => {
 
   const { busStop, line } = event.queryStringParameters;
 

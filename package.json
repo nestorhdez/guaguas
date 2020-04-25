@@ -2,12 +2,11 @@
   "name": "lambda-guaguas",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bus/bus.js",
   "scripts": {
-    "build": "npm run build:src; npm run build:lib; npm run build:zipped",
-    "build:src": "cd src; npm i; cd ..; tsc; rm -rf src/node_modules",
-    "build:lib": "cd lib/bus; npm i; cd ../..",
-    "build:zipped": "mkdir lambda; zip -r lambda/bus.zip lib/bus",
+    "build": "npm run build:src; npm run build:zipped",
+    "build:src": "cd bus; npm i; cd ..",
+    "build:zipped": "mkdir lambda; zip -r lambda/bus.zip bus",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +14,5 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "tslint": "^6.1.1",
-    "typescript": "^3.8.3"
   }
 }
