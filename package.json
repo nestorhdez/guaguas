@@ -2,7 +2,7 @@
   "name": "lambda-guaguas",
   "version": "1.0.0",
   "description": "",
-  "main": "bus/bus.js",
+  "main": "index.js",
   "scripts": {
     "build": "npm run build:src; npm run build:zipped",
     "build:src": "cd src/bus; npm i; cd ../..",
