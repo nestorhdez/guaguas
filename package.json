@@ -5,8 +5,8 @@
   "main": "bus/bus.js",
   "scripts": {
     "build": "npm run build:src; npm run build:zipped",
-    "build:src": "cd bus; npm i; cd ..",
-    "build:zipped": "mkdir lambda; zip -r lambda/bus.zip bus",
+    "build:src": "cd src/bus; npm i; cd ../..",
+    "build:zipped": "mkdir lambda; zip -r lambda/bus.zip src/bus",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
