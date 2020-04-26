@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:src; npm run build:zipped",
-    "build:src": "cd src/bus; npm i; cd ../..",
-    "build:zipped": "mkdir lambda; cd src; zip -r ../lambda/bus.zip bus",
+    "build": "mkdir lambda; npm run build:src; npm run build:zipped",
+    "build:src": "cd src/bus; npm i; cd ../action; npm i; cd ..",
+    "build:zipped": "zip -r ../lambda/bus.zip bus; zip -r ../lambda/action.zip action",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
