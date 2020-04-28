@@ -1,6 +1,7 @@
 'use strict';
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { WebhookClient } = require('dialogflow-fulfillment');
 const express = require('express');
 const serverless = require('serverless-http');
 const helmet = require('helmet');
@@ -13,8 +14,34 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
+function welcome(agent) {
+  agent.add(`¿Qué parada quieres consultar?`);
+}
+
+function fallback(agent) {
+  agent.add(`Lo siento. No te he entendido`);
+}
+
+function busStop(agent) {
+  agent.add(`Los parámetros son: ${JSON.stringify(agent.parameters)}`);
+}
+
 router.post('/', (request, response) => {
-  response.json({res: 'Post received'});
+  
+  try {
+    const agent = new WebhookClient({ request, response });
+
+    // Run the proper function handler based on the matched Dialogflow intent name
+    let intentMap = new Map();
+    intentMap.set('Default Welcome Intent', welcome);
+    intentMap.set('Default Fallback Intent', fallback);
+    intentMap.set('parada de guaguas', busStop);
+    agent.handleRequest(intentMap);
+  }catch(error) {
+    return response.status(500).json({error});
+  }
+  
+  return response.json({res: 'Action successfully handled'});
 });
 
 app.use('/.netlify/functions/action', router);
