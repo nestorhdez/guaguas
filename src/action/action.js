@@ -1,11 +1,9 @@
 'use strict';
-const express = require('express');
-const serverless = require('serverless-http');
-const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require('express');
+const serverless = require('serverless-http');
 
-let express = require('express');
 const app = express();
 
 app.use(cors());
