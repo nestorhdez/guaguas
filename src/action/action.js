@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
 app.post('/', (request, response) => {
-  response.status(200).send('Post received');
+  response.json({res: 'Post received'});
 });
 
 exports.handler = serverless(app);
