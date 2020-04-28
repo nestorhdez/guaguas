@@ -2,6 +2,7 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
+const helmet = require('helmet');
 const serverless = require('serverless-http');
 
 const app = express();
