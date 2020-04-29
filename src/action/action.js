@@ -41,8 +41,6 @@ router.post('/', (request, response) => {
   }catch(error) {
     return response.status(500).json({error});
   }
-  
-  return response.json({res: 'Action successfully handled'});
 });
 
 app.use('/.netlify/functions/action', router);
