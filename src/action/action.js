@@ -23,7 +23,8 @@ function fallback(agent) {
 }
 
 function busStop(agent) {
-  agent.add(`Los parámetros son: ${JSON.stringify(agent.parameters)}`);
+  console.log(JSON.stringify(agent.parameters));
+  agent.add(`Consultando tu parada`);
 }
 
 router.post('/', (request, response) => {
