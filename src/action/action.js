@@ -23,7 +23,9 @@ function fallback(agent) {
 }
 
 function busStop(agent) {
-  console.log(JSON.stringify(agent.parameters));
+  console.log(process.env["BUS_URL"]);
+  const { busStop, line } = agent.parameters;
+  console.log({busStop, line});
   agent.add(`Consultando tu parada`);
 }
 
