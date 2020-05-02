@@ -6,6 +6,8 @@ const express = require('express');
 const serverless = require('serverless-http');
 const helmet = require('helmet');
 
+const getBus = require('./getData');
+
 const app = express();
 const router = express.Router();
 
@@ -22,11 +24,25 @@ function fallback(agent) {
   agent.add(`Lo siento. No te he entendido`);
 }
 
-function busStop(agent) {
-  console.log(process.env["BUS_URL"]);
-  const { busStop, line } = agent.parameters;
-  console.log({busStop, line});
-  agent.add(`Consultando tu parada`);
+async function busStop(agent) {
+  const { parada, linea } = agent.parameters;
+  
+  const baseUrl = new URL(process.env["BUS_URL"]);
+  parada && baseUrl.searchParams.set('busStop', parada);
+  linea && baseUrl.searchParams.set('line', linea);
+  const url = baseUrl.toString();
+
+  const { result, error } = await getBus(url);
+
+  if(error) {
+    agent.add(`Lo siento. Ha ocurrido un error`);
+    return;
+  }
+
+  const resultText = 
+    result.map( ( {line, time} ) => `Guagua ${line}, ${time} minutos` ).join('. ');
+
+  agent.add(resultText);
 }
 
 router.post('/', (request, response) => {
