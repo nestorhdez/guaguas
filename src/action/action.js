@@ -35,19 +35,19 @@ async function busStop(agent) {
   const { result, error } = await getBus(url);
 
   if(error) {
-    agent.add(`Lo siento. Ha ocurrido un error`);
+    agent.end(`Lo siento. Ha ocurrido un error`);
     return;
   }
 
   if(!result.length) {
-    agent.add('No hay información de la parada. Inténtelo más tarde.');
+    agent.end('No hay información de la parada. Inténtelo más tarde.');
     return;
   }
 
   const resultText = 
     result.map( ( {line, time} ) => `Guagua ${line}, ${time} minutos` ).join('. ');
 
-  agent.add(resultText);
+  agent.end(resultText);
 }
 
 router.post('/', (request, response) => {
