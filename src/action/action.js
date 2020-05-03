@@ -39,6 +39,11 @@ async function busStop(agent) {
     return;
   }
 
+  if(!result.length) {
+    agent.add('No hay información de la parada. Inténtelo más tarde.');
+    return;
+  }
+
   const resultText = 
     result.map( ( {line, time} ) => `Guagua ${line}, ${time} minutos` ).join('. ');
 
