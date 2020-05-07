@@ -48,12 +48,6 @@ exports.handler = async (event, context) => {
       : response;
     
     console.log('Success');
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        result: busStopResponse
-      })
-    };
 
   } catch(error) {
     console.log(`Error: ${error}`);
@@ -68,4 +62,11 @@ exports.handler = async (event, context) => {
       await browser.close();
     }
   }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      result: busStopResponse
+    })
+  };
 };
