@@ -35,13 +35,13 @@ exports.handler = async (event, context) => {
     await page.waitFor('#resp_parada_menu > div > table', {visible: true});
 
     const rowsSelector = '#resp_parada_menu > div > table > tbody > tr';
-    const time = (min) => min === '>>' ? 0 : min;
-    const response = await page.$$eval(rowsSelector, rows =>
-      rows.map( ({ children }) => ({
-        line: children[0].textContent,
+    const response = await page.$$eval(rowsSelector, rows => {
+      const time = (min) => min === '>>' ? 0 : +min;
+      return rows.map( ({ children }) => ({
+        line: +children[0].textContent,
         time: time(children[2].textContent.split(' ')[0])
       }))
-    );
+    });
 
     busStopResponse = line
       ? response.filter( ({line: l} ) => l === line)
