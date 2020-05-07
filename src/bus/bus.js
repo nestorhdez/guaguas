@@ -17,6 +17,8 @@ exports.handler = async (event, context) => {
     }
   }
 
+  console.log(`Getting bus stop: ${busStop}${line ? ` line: ${line}` : '.'}`);
+
   try {
     browser = await puppeteer.launch({
       args,
@@ -44,8 +46,17 @@ exports.handler = async (event, context) => {
     busStopResponse = line
       ? response.filter( ({line: l} ) => l === line)
       : response;
+    
+    console.log('Success');
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        result: busStopResponse
+      })
+    };
 
   } catch(error) {
+    console.log(`Error: ${error}`);
     return {
       statusCode: 500,
       body: JSON.stringify({
@@ -57,11 +68,4 @@ exports.handler = async (event, context) => {
       await browser.close();
     }
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      result: busStopResponse
-    })
-  };
 };
