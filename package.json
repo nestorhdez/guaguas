@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "mkdir lambda; npm run build:src; npm run build:zipped",
-    "build:src": "cd src/bus; npm i; cd ../action; npm i;",
-    "build:zipped": "cd src; zip -r ../lambda/bus.zip bus; zip -r ../lambda/action.zip action",
+    "build:src": "cd src/bus; npm i; cd ../action; npm i; cd ../notification; npm i;",
+    "build:zipped": "cd src; zip -r ../lambda/bus.zip bus; zip -r ../lambda/action.zip action; zip -r ../lambda/notification.zip notification;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
