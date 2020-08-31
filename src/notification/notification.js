@@ -55,10 +55,9 @@ exports.handler = async (event, context) => {
 
     const payload = JSON.stringify(response);
 
-    console.log({subscription});
     // Pass object into sendNotification
     await webpush
-      .sendNotification(subscription, payload)
+      .sendNotification(JSON.parse(subscription), payload)
       .catch(e => {
         console.error("Webpush error");
         throw e;
