@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
   
     const { result, error } = await getBus(url);
 
-    if(error) throw new Error(error);
+    if(error) throw error;
 
     if(result && result.length) {
       response.body = result.map(
@@ -55,12 +55,13 @@ exports.handler = async (event, context) => {
 
     const payload = JSON.stringify(response);
 
+    console.log({subscription});
     // Pass object into sendNotification
     await webpush
       .sendNotification(subscription, payload)
       .catch(e => {
         console.error("Webpush error");
-        throw new Error(e);
+        throw e;
       });
   
     console.log("Notification pushed! 🚀");
