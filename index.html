@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Guaguas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div id="bus-form">
+      <h1>Parada de guaguas</h1>
+      <label for="bus-stop">Número de la parada de guaguas</label>
+      <input id="bus-stop" type="number" />
+      <label for="line">Línea específica</label>
+      <input id="line" type="text" />
+      <button id="notification">
+        Get notification
+      </button>
+    </div>
+    <script src="main.js"></script>
+  </body>
+  <style>
+    #bus-form {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      margin-bottom: 20px;
+    }
+
+    input {
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px;
+    }
+
+    @media(max-width: 620px) {
+      #bus-form {
+        width: 90%;
+      }
+    }
+
+  </style>
+</html>
