@@ -11,6 +11,7 @@ exports.handler = async (event, context) => {
 
   // Get pushSubscription object
   const { body: subscription } = event;
+  console.log({subscription});
   const { busStop, line } = event.queryStringParameters;
 
   console.log(`Request received: Bus stop: ${busStop}, line: ${line}`);
