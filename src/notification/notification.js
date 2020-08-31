@@ -1,5 +1,5 @@
 const webpush = require('web-push');
-const getBus = require('../action/getData');
+const getBus = require('./getData');
 
 exports.handler = async (event, context) => {
   if(event.httpMethod !== 'POST') {
