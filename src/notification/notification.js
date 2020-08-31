@@ -58,7 +58,10 @@ exports.handler = async (event, context) => {
     // Pass object into sendNotification
     await webpush
       .sendNotification(subscription, payload)
-      .catch(e => { throw new Error(e) });
+      .catch(e => {
+        console.error("Webpush error");
+        throw new Error(e);
+      });
   
     console.log("Notification pushed! 🚀");
 
